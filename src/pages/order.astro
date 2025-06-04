@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Order Lunch & Drinks">
+    <h1 class="mb-10">Corporate Order Form</h1>
+    <form id="order-form" class="space-y-6 max-w-md" style="max-width:24rem">
+        <div>
+            <label for="name" class="block mb-2">Your Name</label>
+            <input id="name" name="name" type="text" required class="w-full p-2 text-gray-900 rounded" />
+        </div>
+        <div>
+            <label for="item" class="block mb-2">Item</label>
+            <input id="item" name="item" type="text" placeholder="Lunch box or Drink" required class="w-full p-2 text-gray-900 rounded" />
+        </div>
+        <div>
+            <label for="quantity" class="block mb-2">Quantity</label>
+            <input id="quantity" name="quantity" type="number" min="1" value="1" required class="w-full p-2 text-gray-900 rounded" />
+        </div>
+        <div class="flex justify-center pt-4">
+            <button type="submit" class="btn">Submit Order</button>
+        </div>
+    </form>
+</Layout>
+
+<script>
+    const form = document.getElementById('order-form');
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = {
+            name: form.name.value,
+            item: form.item.value,
+            quantity: form.quantity.value
+        };
+        const res = await fetch('/api/order', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        if (res.ok) {
+            alert('Order submitted');
+            form.reset();
+        } else {
+            alert('Failed to submit order');
+        }
+    });
+</script>

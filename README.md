@@ -49,3 +49,15 @@ netlify dev
 ```
 
 If your browser doesn't navigate to the site automatically, visit [localhost:8888](http://localhost:8888).
+
+## Corporate Lunch Order System
+
+The `/order` page provides a simple form for submitting lunch and drink orders. Submitted orders are stored in a Google Sheet via the `/api/order` endpoint.
+
+To enable Google Sheets integration, define the following environment variables:
+
+- `GOOGLE_SERVICE_ACCOUNT_EMAIL` – service account email
+- `GOOGLE_PRIVATE_KEY` – private key for the service account
+- `GOOGLE_SHEET_ID` – ID of the spreadsheet to store orders
+
+The spreadsheet must have a sheet named `Orders` with at least four columns. Each submission appends a new row with the timestamp, name, item and quantity.
