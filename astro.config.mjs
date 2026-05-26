@@ -9,5 +9,6 @@ export default defineConfig({
         plugins: [tailwindcss()]
     },
     integrations: [react()],
-    adapter: node({ mode: 'standalone' })
+    adapter: node({ mode: 'standalone' }),
+    output: 'server'
 });
